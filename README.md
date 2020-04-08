@@ -1,2 +1,2 @@
 # Declutter
-This python script will help declutter your folders by moving files to an assigned folder by filetype.
+This python script will help declutter your downloads folder by moving files to an assigned folder by filetype.
