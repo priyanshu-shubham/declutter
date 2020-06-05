@@ -1,9 +1,11 @@
 import os
 import shutil
 import datetime
-downloadspath="C:\\Users\\Owner\\Downloads"
-#downloadspath="sample"
-os.chdir(downloadspath)
+folderPath=input("Enter Path Of Folder You Want To Declutter:\n")
+if folderPath.lower()=="d":
+    from pathlib import Path
+    folderPath=os.path.join(Path.home(), "Downloads")
+os.chdir(folderPath)
 _allfiles=os.listdir()
 allfiles=[]
 now=datetime.datetime.now()
@@ -15,20 +17,17 @@ for i in _allfiles:
         allfiles.append(i)
 
 print("""
-  ||
-  ||
-  ||
-  ||
-  ||
-  ||
-  ||     Here you go, sweep
-  ||     that up..............
- /||\\
-/||||\\
-======         __|__
-||||||        / ~@~ \
-||||||       |-------|
-||||||       |_______|
+
+           88                                   88
+           88                                   ""
+           88
+ ,adPPYba, 88  ,adPPYba, ,adPPYYba, 8b,dPPYba,  88 8b,dPPYba,   ,adPPYb,d8
+a8"     "" 88 a8P_____88 ""     `Y8 88P'   `"8a 88 88P'   `"8a a8"    `Y88
+8b         88 8PP\"\"\"\"\"\"\" ,adPPPPP88 88       88 88 88       88 8b       88
+"8a,   ,aa 88 "8b,   ,aa 88,    ,88 88       88 88 88       88 "8a,   ,d88
+ `"Ybbd8"' 88  `"Ybbd8"' `"8bbdP"Y8 88       88 88 88       88  `"YbbdP"Y8
+                                                                aa,    ,88
+                                                                 "Y8bbdP"
 """)
 
 applications=["msi","exe"]
@@ -90,12 +89,12 @@ for i in allfiles:
                     shutil.move(i,"Html")
            if ext in sheetandppt:
                     shutil.move(i,"Sheetandppt")
+        done+=1
     except:
         continue
-    done+=1
     percent=(done*10)//total
     if percent in percentages:
-        print("{}% Done.".format(percent*10))
+        print("\r{}% Done.".format(percent*10))
         percentages.remove(percent)
-print("{} files moved.".format(done))
-print(total)
+print(f"ALl your files older than 5 days in {folderPath} has been decluttered successfully. Enjoy!🥳")
+print("{} files moved out of {} files.".format(done,total))
