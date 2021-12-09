@@ -1,7 +1,7 @@
 import os
 import shutil
 import datetime
-folderPath=input("Enter Path Of Folder You Want To Declutter:\n")
+folderPath=input("Enter Path Of Folder You Want To Declutter:\nPress d to have the default download directory on windows.\n")
 if folderPath.lower()=="d":
     from pathlib import Path
     folderPath=os.path.join(Path.home(), "Downloads")
@@ -30,16 +30,18 @@ a8"     "" 88 a8P_____88 ""     `Y8 88P'   `"8a 88 88P'   `"8a a8"    `Y88
                                                                  "Y8bbdP"
 """)
 
-applications=["msi","exe"]
-archives=["zip","7z","rar"]
-music=["mp3",]
-videos=["mp4","avi"]
+applications=["msi","exe","iso"]
+archives=["zip","7z","rar","tar","gz"]
+music=["mp3","wav","ogg"]
+videos=["mp4","avi","mkv","m4v","webm"]
 projects=["psd",]
-documents=["pdf","doc","docx",]
-pictures=["jpeg","jpg","png","gif"]
-html=["webp","html"]
-sheetandppt=["csv","xlsx","pptx"]
-filetypes=applications+archives+music+videos+projects+documents+pictures+html+sheetandppt
+documents=["pdf","doc","docx","epub","odt"]
+pictures=["jpeg","jpg","png","gif","svg"]
+html=["webp","html","htm"]
+sheetandppt=["csv","xlsx","pptx","ppt","tsv","ods","odp"]
+code=["py","c","cpp","ipynb","json","m","s","v","brd"]
+text=["txt","md",]
+filetypes=applications+archives+music+videos+projects+documents+pictures+html+sheetandppt+text+code
 
 
 if not os.path.exists("Applications"):
@@ -60,6 +62,10 @@ if not os.path.exists("Html"):
     os.mkdir("Html")
 if not os.path.exists("Sheetandppt"):
     os.mkdir("Sheetandppt")
+if not os.path.exists("Codes"):
+    os.mkdir("Codes")
+if not os.path.exists("Texts"):
+    os.mkdir("Texts")
 
 total=len(allfiles)
 done=0
@@ -71,24 +77,29 @@ for i in allfiles:
         if ext not in filetypes:
             continue
         else:
-           if ext in applications:
+            if ext in applications:
                     shutil.move(i,"Applications")
-           if ext in archives:
+            if ext in archives:
                     shutil.move(i,"Archives")
-           if ext in music:
+            if ext in music:
                     shutil.move(i,"Music")
-           if ext in videos:
+            if ext in videos:
                     shutil.move(i,"Videos")
-           if ext in projects:
+            if ext in projects:
                     shutil.move(i,"Projects")
-           if ext in documents:
+            if ext in documents:
                     shutil.move(i,"Documents")
-           if ext in pictures:
+            if ext in pictures:
                     shutil.move(i,"Pictures")
-           if ext in html:
+            if ext in html:
                     shutil.move(i,"Html")
-           if ext in sheetandppt:
+            if ext in sheetandppt:
                     shutil.move(i,"Sheetandppt")
+            if ext in code:
+                    shutil.move(i,"Codes")
+            if ext in text:
+                    shutil.move(i,"Texts")
+
         done+=1
     except:
         continue
